@@ -9,7 +9,6 @@ import GenerateBtn from "../components/GenerateBtn";
 const Home = () => {
   return (
     <div>
-
     <Header/>
     <Setup/>
     <Description/>
