@@ -1,8 +1,22 @@
-import React from "react";
+import React,{useContext} from "react";
 import { assets } from "../assets/assets";
 import {motion} from "framer-motion"
+import {AppContext} from '../context/AppContext'
+import {useNavigate} from 'react-router-dom'
 
 const Header = () => {
+
+  const {user, setShowLogin} = useContext(AppContext)
+  const navigate = useNavigate();
+
+  const onClickHandler = () => {
+    if(user){
+      navigate('/result')
+    }else{
+      setShowLogin(true);
+    }
+  }
+
   return (
     <motion.div className="flex flex-col justify-center items-center text-center my-20" initial={{opacity:0.2, y:100}} transition={{duration:1}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}}>
       <motion.div initial={{opacity:0.2, y:-20}} transition={{delay: 0.2, duration:0.8}} whileInView={{opacity: 1, y: 0}} className="text-stone-500 inline-flex text-center gap-2 bg-white px-6 py-1 rounded-full border border-neutral-500">
@@ -27,7 +41,7 @@ const Header = () => {
         assumenda consectetur inventore delectus! Facilis,amet laboriosam
         voluptate unde voluptas at doloremque eos magni!
       </motion.p>
-      <motion.button className="sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full"
+      <motion.button onClick={onClickHandler} className="sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full"
       whileHover={{scale: 1.05}}
       whileTap={{ scale: 0.95 }}
       initial = {{ opacity: 0}}
